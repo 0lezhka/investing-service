@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: investingService
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:investing}
+    username: ${DB_USER:myuser}
+    password: ${DB_PASSWORD:secret}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+market-data:
+  provider: finnhub
+  finnhub:
+    base-url: ${FINNHUB_BASE_URL:https://finnhub.io/api/v1}
+    api-key: ${FINNHUB_API_KEY:}
+    connect-timeout: 2s
+    read-timeout: 5s
+    enable-market-status: false
+    cache:
+      enabled: true
+      quote-ttl: 30s
+      profile-ttl: 24h
+      market-status-ttl: 5m
+      batch-size: 25
+      max-concurrency: 4

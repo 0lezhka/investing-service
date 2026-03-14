@@ -1,0 +1,55 @@
+{
+  "baseCurrency": "USD",
+  "policy": "BUY_ONLY",
+  "portfolio": {
+    "cash": { "amount": 0, "currency": "USD" },
+    "positions": [
+      { "symbol": "AGG",  "assetId": "AGG",  "currency": "USD", "quantity": 3.3071, "price": 99.21078891,  "allowTrade": true, "allowBuy": true, "allowSell": false, "lots": [] },
+      { "symbol": "IAU",  "assetId": "IAU",  "currency": "USD", "quantity": 4.1362, "price": 94.49978241,  "allowTrade": true, "allowBuy": true, "allowSell": false, "lots": [] },
+      { "symbol": "IBKR", "assetId": "IBKR", "currency": "USD", "quantity": 0.6284, "price": 66.18395926,  "allowTrade": true, "allowBuy": true, "allowSell": false, "lots": [] },
+      { "symbol": "QQQ",  "assetId": "QQQ",  "currency": "USD", "quantity": 0.8749, "price": 592.79917705, "allowTrade": true, "allowBuy": true, "allowSell": false, "lots": [] },
+      { "symbol": "RSP",  "assetId": "RSP",  "currency": "USD", "quantity": 1.5047, "price": 193.48042799, "allowTrade": true, "allowBuy": true, "allowSell": false, "lots": [] },
+      { "symbol": "SGOV", "assetId": "SGOV", "currency": "USD", "quantity": 3.3119, "price": 100.50726169, "allowTrade": true, "allowBuy": true, "allowSell": false, "lots": [] },
+      { "symbol": "VBR",  "assetId": "VBR",  "currency": "USD", "quantity": 1.3334, "price": 215.66671666, "allowTrade": true, "allowBuy": true, "allowSell": false, "lots": [] },
+      { "symbol": "VEA",  "assetId": "VEA",  "currency": "USD", "quantity": 4.1859, "price": 63.94084904,  "allowTrade": true, "allowBuy": true, "allowSell": false, "lots": [] },
+      { "symbol": "VNQ",  "assetId": "VNQ",  "currency": "USD", "quantity": 3.5836, "price": 92.02477955,  "allowTrade": true, "allowBuy": true, "allowSell": false, "lots": [] },
+      { "symbol": "VOO",  "assetId": "VOO",  "currency": "USD", "quantity": 4.6639, "price": 608.79092605, "allowTrade": true, "allowBuy": true, "allowSell": false, "lots": [] },
+      { "symbol": "VWO",  "assetId": "VWO",  "currency": "USD", "quantity": 9.2726, "price": 54.26956841,  "allowTrade": true, "allowBuy": true, "allowSell": false, "lots": [] },
+      { "symbol": "VXUS", "assetId": "VXUS", "currency": "USD", "quantity": 2.2641, "price": 76.85172916,  "allowTrade": true, "allowBuy": true, "allowSell": false, "lots": [] }
+    ]
+  },
+  "targets": [
+    { "assetId": "QQQ",  "targetWeight": 0.06 },
+    { "assetId": "VBR",  "targetWeight": 0.05 },
+    { "assetId": "VOO",  "targetWeight": 0.465 },
+    { "assetId": "AGG",  "targetWeight": 0.055 },
+    { "assetId": "SGOV", "targetWeight": 0.055 },
+    { "assetId": "IAU",  "targetWeight": 0.05 },
+    { "assetId": "VNQ",  "targetWeight": 0.055 },
+    { "assetId": "RSP",  "targetWeight": 0.05 }
+  ],
+  "composites": [
+    {
+      "compositeId": "INTL",
+      "targetWeight": 0.16,
+      "members": ["VEA", "VWO", "VXUS"],
+      "tradePolicy": {
+        "buyMembers": ["VXUS"],
+        "sellMembers": [],
+        "lockedMembers": []
+      }
+    }
+  ],
+  "budget": { "mode": "NEW_CASH_ONLY", "amount": 250, "currency": "USD" },
+  "threshold": { "type": "MAX_ABS", "value": 0.0001 },
+  "fees": { "perOrderFixed": 0, "percentOfNotional": 0, "minFee": 0 },
+  "sizing": { "fractionalAllowed": true, "quantityStep": 0.0001, "minNotional": 1, "minQuantity": 0.0001 },
+  "options": {
+    "epsilonWeightSum": 0.000001,
+    "roundingMode": "FLOOR",
+    "includeIntermediateMetrics": false,
+    "allowExtraAssets": false,
+    "allowMemberTargets": false,
+    "ignoredAssetIds": ["IBKR"]
+  }
+}
