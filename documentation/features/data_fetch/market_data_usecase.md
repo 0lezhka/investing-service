@@ -246,6 +246,9 @@ Rebalancing should not depend on:
 - caching implementation details
 - future fallback-provider logic
 
+Current Finnhub cache behavior:
+- when `market-data.finnhub.cache.enabled=false`, the configuration must fall back to the built-in no-op cache and must not require Redis beans to be present
+
 This keeps rebalancing isolated from provider changes while still allowing the market-data capability to grow.
 
 ## Non-functional expectations

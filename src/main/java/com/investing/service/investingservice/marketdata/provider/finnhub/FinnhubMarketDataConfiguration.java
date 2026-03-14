@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.investing.service.investingservice.marketdata.provider.MarketDataProvider;
 import io.netty.channel.ChannelOption;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,14 +37,19 @@ public class FinnhubMarketDataConfiguration {
 
     @Bean
     @ConditionalOnMissingBean(FinnhubDataCache.class)
-    FinnhubDataCache finnhubDataCache(
+    @ConditionalOnProperty(prefix = "market-data.finnhub.cache", name = "enabled", havingValue = "false")
+    FinnhubDataCache noOpFinnhubDataCache() {
+        return new NoOpFinnhubDataCache();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(FinnhubDataCache.class)
+    @ConditionalOnProperty(prefix = "market-data.finnhub.cache", name = "enabled", havingValue = "true", matchIfMissing = true)
+    FinnhubDataCache redisFinnhubDataCache(
             FinnhubMarketDataProperties properties,
             StringRedisTemplate stringRedisTemplate,
             ObjectMapper objectMapper
     ) {
-        if (!properties.getCache().isEnabled()) {
-            return new NoOpFinnhubDataCache();
-        }
         return new RedisFinnhubDataCache(stringRedisTemplate, objectMapper, properties);
     }
 }
